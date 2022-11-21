@@ -1,13 +1,34 @@
 GET http://localhost:3001/api/persons
 
 ###
+GET http://localhost:3001/api/persons/6371715a723022ff705c86b4
+
+###
 POST http://localhost:3001/api/persons
 Content-Type: application/json
 
 {
-    "name":"Pepe Lucho",
-    "number": "965874123"
+    "name":"Gustavino",
+    "number": "9658743"
 }
 
 ###
-DELETE http://localhost:3001/api/persons/6
+POST http://localhost:3001/api/persons
+Content-Type: application/json
+
+{
+    "name":"Juana La Cubana",
+    "number": "9646893"
+}
+
+###
+DELETE http://localhost:3001/api/persons/6374431bc81a6e85273731df
+
+###
+PUT  http://localhost:3001/api/persons/63744315c81a6e85273731dc
+Content-Type: application/json
+
+{
+    "name":"Gustavino",
+    "number": "9876543245551"
+}
