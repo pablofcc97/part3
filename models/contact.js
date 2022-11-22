@@ -6,7 +6,7 @@ const url = process.env.MONGODB_URI
 console.log('connecting to', url)
 
 mongoose.connect(url)
-  .then(result => {
+  .then(() => {
     console.log('connected to MongoDB')
   })
   .catch((error) => {
@@ -15,23 +15,21 @@ mongoose.connect(url)
 
 
 const contactSchema = new mongoose.Schema({
-    name: {
-      type: String,
-      minlength: 3,
-      unique: true,
-      required: true
-    },
-    number: {
-      type: String,
-      minlength:8,
-      unique: true,
-      required:true
-    },
-    id: Number,
-  })
+  name: {
+    type: String,
+    minlength: 3,
+    unique: true,
+    required: true
+  },
+  number: {
+    type: String,
+    minlength:8,
+    unique: true,
+    required:true
+  },
+  id: Number,
+})
 contactSchema.plugin(uniqueValidator)
-
-const Contact = mongoose.model('Contact', contactSchema)
 
 contactSchema.set('toJSON', {
   transform: (document, returnedObject) => {

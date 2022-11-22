@@ -13,44 +13,44 @@ const url =
 mongoose.connect(url)
 
 const contactSchema = new mongoose.Schema({
-    name: {
-      type: String,
-      minlength: 3,
-      unique: true,
-      required: true
-    },
-    number: {
-      type: String,
-      minlength:8,
-      unique: true,
-      required:true
-    },
-    id: Number,
-  })
+  name: {
+    type: String,
+    minlength: 3,
+    unique: true,
+    required: true
+  },
+  number: {
+    type: String,
+    minlength:8,
+    unique: true,
+    required:true
+  },
+  id: Number,
+})
 contactSchema.plugin(uniqueValidator)
 
 const Contact = mongoose.model('Contact', contactSchema)
 
 if(process.argv.length===3){
-    Contact.find({}).then(result => {
-        result.forEach(contact => {
-          console.log(contact)
-        })
-        mongoose.connection.close()
+  Contact.find({}).then(result => {
+    result.forEach(contact => {
+      console.log(contact)
     })
+    mongoose.connection.close()
+  })
 }
 
 if(process.argv.length>3){
-    const contact = new Contact({
-        name: process.argv[3],
-        number: process.argv[4],
-    })
-      
-    contact.save().then(result => {
-        console.log('contact saved!')
-        mongoose.connection.close()
-    })
-      
+  const contact = new Contact({
+    name: process.argv[3],
+    number: process.argv[4],
+  })
+
+  contact.save().then(() => {
+    console.log('contact saved!')
+    mongoose.connection.close()
+  })
+
 }
 
 
